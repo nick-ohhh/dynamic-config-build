@@ -4,6 +4,7 @@ version: 2.1
 
 orbs:
   android: circleci/android@02.5.0
+  super-orb: nnn/super-orb@1.0.0
 
 parameters:
   app:
@@ -106,10 +107,12 @@ workflows:
     when: << pipeline.parameters.api >>
     jobs:
       - api-build
+      - super-orb/greet
   auth:
     when: << pipeline.parameters.auth >>
     jobs:
       - auth-build
+      - super-orb/greet
   unit:
     when: << pipeline.parameters.unit >>
     jobs:
