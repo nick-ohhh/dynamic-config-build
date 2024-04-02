@@ -82,6 +82,7 @@ jobs:
           name: echo Hello
           command: |
             echo "This is the API project"
+      - super-orb/greet
   auth-build:
     docker:
       - image: cimg/base:2022.07
@@ -90,6 +91,7 @@ jobs:
           name: echo Hello
           command: |
             echo "This is the auth project"
+      - super-orb/greet
   unit-tests:
     docker:
       - image: cimg/base:2022.07
@@ -107,12 +109,10 @@ workflows:
     when: << pipeline.parameters.api >>
     jobs:
       - api-build
-      - super-orb/greet
   auth:
     when: << pipeline.parameters.auth >>
     jobs:
       - auth-build
-      - super-orb/greet
   unit:
     when: << pipeline.parameters.unit >>
     jobs:
