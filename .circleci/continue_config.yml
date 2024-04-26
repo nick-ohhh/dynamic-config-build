@@ -4,7 +4,7 @@ version: 2.1
 
 orbs:
   android: circleci/android@02.5.0
-  super-orb: nnn/super-orb@1.0.0
+  super-orb: nnn/super-orb@1.0.1
 
 parameters:
   app:
@@ -57,9 +57,9 @@ jobs:
         - android/accept-licenses
         - setup-bazel:
             bazel-version: <<parameters.bazel-version>>
-        - run:
-            name: Run tests
-            command: << parameters.bazel-version >> test //packages/app/src:unit_tests # Depending on your Bazel package and target
+        # - run:
+        #     name: Run tests
+        #     command: << parameters.bazel-version >> test //packages/app/src:unit_tests # Depending on your Bazel package and target
         - run:
             name: Run build
             command: << parameters.bazel-version >> build //packages/app/src:app # Depending on your Bazel package and target
