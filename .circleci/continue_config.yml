@@ -4,7 +4,7 @@ version: 2.1
 
 orbs:
   android: circleci/android@02.5.0
-  super-orb: nnn/super-orb@1.0.1
+  super-orb: nnn/super-orb@$ORB_SEMVER
 
 parameters:
   app:
@@ -101,15 +101,19 @@ jobs:
           name: echo Hello
           command: |
             echo "This is the unit test"
+            echo $ORB_SEMVER
 workflows:
   app:
     when: << pipeline.parameters.app >>
     jobs:
       - app-build
+
   api:
     when: << pipeline.parameters.api >>
     jobs:
-      - api-build
+      - api-build:
+          context:
+            - orb-version
   auth:
     when: << pipeline.parameters.auth >>
     jobs:
