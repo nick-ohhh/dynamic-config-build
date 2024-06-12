@@ -4,7 +4,7 @@ version: 2.1
 
 orbs:
   android: circleci/android@02.5.0
-  super-orb: nnn/super-orb@$ORB_SEMVER
+  super-orb: nnn/super-orb@ORB_SEMVER
 
 parameters:
   app:
